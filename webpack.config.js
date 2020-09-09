@@ -25,23 +25,26 @@ module.exports = {
 					{
 						loader: "css-loader",
 						options: {
+							sourceMap: true,
+						},
+					},
+					{
+						loader: "postcss-loader",
+						options: {
 							sourceMap: true
 						}
 					},
 					{
 						loader: "sass-loader",
 						options: {
-							sourceMap: true
-						}
-					}
+							sourceMap: true,
+						},
+					},
 				],
 			},
 			{
 				test: /\.css$/,
-				use: [
-					MiniCssExtractPlugin.loader,
-					"css-loader"
-				],
+				use: [MiniCssExtractPlugin.loader, "css-loader"],
 			},
 		],
 	},
