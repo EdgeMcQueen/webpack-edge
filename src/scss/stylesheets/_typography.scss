@@ -1,0 +1,17 @@
+
+// @font-face {
+//   font-family: "";
+//   font-style: ;
+//   font-weight: ;
+//   src:
+//     url("") format("woff2"), // IE6-IE8
+//     url("") // Super Modern Browsers
+//       format("woff"),
+// }
+
+@mixin font($size, $weight) {
+  font: {
+    size: $size;
+    weight: $weight;
+  }
+}
