@@ -1,8 +1,8 @@
 // Global styles
 .wrapper {
     display: flex;
-}
-body {
-    background-size: cover;
-    background-image: url('/assets/img/You.jpg');
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    line-height: 2;
 }
