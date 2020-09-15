@@ -111,6 +111,7 @@ module.exports = {
 			},
 		],
 	},
+	// сокращения корневых пути
 	resolve : {
 		alias: {
 			'~': 'src',
