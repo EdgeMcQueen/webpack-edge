@@ -22,10 +22,22 @@ module.exports = {
 	},
 	// точка выхода :)
 	output: {
-		filename: `${PATHS.assets}js/[name].js`,
+		filename: `${PATHS.assets}js/[name].[hash].js`,
 		path: PATHS.dist,
 		publicPath: "/",
 	},
+	optimization: {
+		splitChunks: {
+		  cacheGroups: {
+			vendor: {
+			  name: 'vendors',
+			  test: /node_modules/,
+			  chunks: 'all',
+			  enforce: true
+			}
+		  }
+		}
+	  },
 	// подключаем модули
 	module: {
 		rules: [
@@ -102,12 +114,12 @@ module.exports = {
 		new VueLoaderPlugin(),
 		// минификатор css
 		new MiniCssExtractPlugin({
-			filename: `${PATHS.assets}css/[name].css`,
+			filename: `${PATHS.assets}css/[name].[hash].css`,
 		  }),
 		new HtmlWebpackPlugin({
-			hash: false,
 			template: `${PATHS.src}/index.html`,
-			filename: './index.html'
+			filename: './index.html',
+			// inject: false // автоматически прописывать пути link и script
 		  }),
 		// копирование изображений
 		new CopyWebpackPlugin({
