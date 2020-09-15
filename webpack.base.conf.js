@@ -65,6 +65,14 @@ module.exports = {
 					name: '[name].[ext]'
 				}
 			},
+			// подключаем загрузчик для шрифтов
+			{
+				test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+				loader: 'file-loader',
+				options: {
+					name: '[name].[ext]'
+				}
+			},
 			// подключаем компилятор и загрузчик scss стилей
 			{
 				test: /\.scss$/,
@@ -105,7 +113,8 @@ module.exports = {
 	},
 	resolve : {
 		alias: {
-			'vue$': 'vue/dist/vue.js'
+			'~': 'src',
+			'vue$': 'vue/dist/vue.js',
 		}
 	},
 	// дополнительные плагины
@@ -119,12 +128,13 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			template: `${PATHS.src}/index.html`,
 			filename: './index.html',
-			// inject: false // автоматически прописывать пути link и script
+			inject: true // автоматически прописывать пути link и script
 		  }),
 		// копирование изображений
 		new CopyWebpackPlugin({
 			patterns: [
-				{ from: `${PATHS.src}/img`, to: `${PATHS.assets}img` },
+				{ from: `${PATHS.src}/${PATHS.assets}/img`, to: `${PATHS.assets}img` },
+				{ from: `${PATHS.src}/${PATHS.assets}/fonts`, to: `${PATHS.assets}fonts` },
 				{ from: `${PATHS.src}/static`, to: '' },
 			]
 		})
